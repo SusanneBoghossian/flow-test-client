@@ -1,25 +1,17 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
+"use strict";
 var keystone = require('keystone');
 var request = require('request');
 var url = require('url');
 var promisify = require('es6-promisify');
-
 var constants = require('../../constants.json');
 var errors = require('../../errors.js');
 var helper = require('../../helper.js');
-
-exports['default'] = function (req, res) {
+function default_1(req, res) {
     var view = new keystone.View(req, res);
     var action = helper.getAction(req);
-
     view.on('get', function (next) {
         res.locals.title = "iApp";
         res.locals.section = "Swisscom User Data";
-
         switch (action) {
             case "register":
                 res.locals.disclaimer = "By pressing 'next' you agree to send your Swisscom User Address to this website. Thereby the registration form will be filled out with your information for prompt and careful completion. You will be able to review your inputted personal details in the next step and correct if necessary.";
@@ -33,8 +25,7 @@ exports['default'] = function (req, res) {
         }
         next();
     });
-
-    view.render('demo/' + action + '/mobile-disclaimer');
-};
-
-module.exports = exports['default'];
+    view.render("demo/" + action + "/mobile-disclaimer");
+}
+exports.__esModule = true;
+exports["default"] = default_1;
