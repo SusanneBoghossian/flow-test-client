@@ -1,0 +1,12 @@
+extends header-enrichment-layout
+
+block header-enrichment-content
+    form(method='post').form-inline
+        p To confirm that you agree to the terms and conditions, enter your postcode:
+        form-group
+            label(for="postCode").sr-only Postcode
+            input(type="text" name="postCode" value="#{enteredPostCode}")#postCode.form-control
+        br
+        br
+        input(type="hidden" name="hiddenMobileNumber" value="#{mobileNumber}")
+        button(type='submit').btn.btn-primary.btn-submit Submit

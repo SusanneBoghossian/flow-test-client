@@ -1,0 +1,20 @@
+extends ../../../layouts/video
+
+block content
+	.container.container-sm
+		.well
+			h4 Please select a scenario
+			br
+			.row
+				.col-md-3
+					.btn-group.btn-group-justified.mb10
+						a.btn.btn-primary(href="/video/buy/cart?isManual=true") Classic check out
+				.col-md-3
+					.btn-group.btn-group-justified.mb10
+						a.btn.btn-primary(href="/video/buy/cart") 1-Click check out
+			.row
+				br
+			.row
+				.col-md-3
+					.btn-group.btn-group-justified
+						a.btn.btn-default(href="/video") Cancel

@@ -1,0 +1,31 @@
+{
+  "name": "flow-test-client",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "async": "~0.9.0",
+    "dotenv": "~0.4.0",
+    "es6-promisify": "^1.1.1",
+    "keystone": "~0.3.0",
+    "lodash": "^3.10.1",
+    "querystring": "^0.2.0",
+    "request": "^2.55.0",
+    "underscore": "~1.7.0"
+  },
+  "devDependencies": {
+    "gulp": "~3.7.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-develop-server": "^0.4.2",
+    "gulp-jshint": "~1.9.0",
+    "gulp-watch": "~0.6.5",
+    "jshint-stylish": "~0.1.3"
+  },
+  "engines": {
+    "node": ">=0.10.22",
+    "npm": ">=1.3.14"
+  },
+  "scripts": {
+    "start": "node keystone.js"
+  },
+  "main": "keystone.js"
+}

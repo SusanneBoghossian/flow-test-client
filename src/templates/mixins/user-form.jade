@@ -1,0 +1,38 @@
+mixin user-form(userInfo,address)
+	.well
+		h4= hint
+		br
+		form.row(method="POST",novalidate="novalidate",data-parsley-error-class="has-error", data-parsley-success-class="has-success")
+			if userInfo
+				.form-group.col-xs-12.col-md-6
+					input.form-control(type="text" value= userInfo.given_name placeholder="First Name", required)
+					span.help-block= requiredText
+				.form-group.col-xs-12.col-md-6
+					input.form-control(type="text" value= userInfo.family_name placeholder="Family Name", required)
+					span.help-block= requiredText
+				if address  
+					.form-group.col-xs-12.col-md-6
+						input.form-control(type="text" value= address.street_address placeholder="Address", required)
+						span.help-block= requiredText
+					.form-group.col-xs-6.col-md-3
+						input.form-control(type="text" value= address.postal_code placeholder= "Postal Code", required)
+						span.help-block= requiredText
+					.form-group.col-xs-6.col-md-3
+						input.form-control(type="text" value= address.locality placeholder= "City", required)
+						span.help-block= requiredText
+					.form-group.col-xs-12.col-md-6
+						input.form-control(type="text" value= address.country placeholder= "Country", required)
+						span.help-block= requiredText
+					.form-group.col-xs-12.col-md-6
+						input.form-control(type="date" value= userInfo.birthdate placeholder="Birthdate", required)
+						span.help-block= requiredText
+					.form-group.col-xs-12.col-md-6
+						input.form-control(type="email" value= userInfo.email placeholder="Email", required)
+						span.help-block= requiredText
+					.form-group.col-xs-12.col-md-6
+						input.form-control(type="text" value= userInfo.phone_number placeholder="Phone Number", required)
+						span.help-block= requiredText
+			.form-group.col-xs-12.col-md-12
+			.btn-group.pull-right
+				a.btn.btn-default(href="./") Cancel
+				button.btn.btn-success(type="submit")= nextButton

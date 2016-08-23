@@ -1,0 +1,16 @@
+extends ../../layouts/demo
+
+block content
+	.container
+		.well
+			h4 Bitte geben Sie Ihren Bestätigungs-Code ein, der Ihnen per SMS zugestellt wurde.
+			br
+			form.row(method="POST")
+				.form-group
+					label.sr-only PIN
+					label #{pin}
+					input(type="hidden",name="msisdn",value="#{msisdn}")
+					input.form-control(name="pin")
+				.btn-group
+					a.btn.btn-default(href="./") Cancel
+					button.btn.btn-primary(type="submit") Weiter

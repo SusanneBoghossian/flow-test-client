@@ -1,0 +1,15 @@
+extends ../layouts/default
+
+block content
+	#index-container.container: .jumbotron
+		.row
+			.col-md-10.col-md-offset-1
+				.row
+					.col-md-4
+						a#header-enrichment(href="/header-enrichment" role="button").btn.btn-default.btn-primary Header Enrichment<br/>Flow
+					.col-md-4
+						a(href="/sms-flow" role="button").btn.btn-default.btn-primary SMS<br/>Flow
+					.col-md-4
+						a(href="/swisscom-sms-flow" role="button").btn.btn-default.btn-primary Swisscom SMS<br/>Flow
+block js
+	script $.get('#{constants.natelPayServer.replace("https","http") + "msisdn"}').done(function() {$('#header-enrichment').removeClass('disabled');}).fail(function() {$('#header-enrichment').addClass('disabled');});

@@ -1,0 +1,21 @@
+extends ../../../layouts/demo
+
+block content
+	.container
+		.well
+			.row
+				h4 Ihr Mobile Status.
+			form.row
+				.form-group
+					label= status.tel
+				.form-group
+					label Active IMSI
+					input.form-control(name="activeIMSI", value= status.activeIMSI, type="text", readonly)
+				.form-group
+					label Call Forwarding
+					input.form-control(name="callForwarding", value= status.callForwarding, type="text", readonly)
+				.form-group
+					label Billing Type
+					input.form-control(name="billingType", value= status.billingType, type="text", readonly)
+				.form-group
+					a.btn.btn-default(href="./") Cancel

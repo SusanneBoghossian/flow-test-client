@@ -1,0 +1,18 @@
+extends ../../../layouts/video
+
+block content
+    .container.container-sm
+        .product
+        .product-description
+           
+            br
+            .row
+                p.lead more of what you're looking for in a toaster
+                h4 Swisscom Toaster X9
+            .row.price-row
+                .price CHF 79.-
+                strong.pull-right free shipping!
+            form.row(action="/video/buy/cart", method="post")
+                .col-md-3
+                    input(type="hidden", name="isManual", value="#{isManual}")
+                    button.btn.btn-group-justified.btn-success(type="submit") BUY NOW

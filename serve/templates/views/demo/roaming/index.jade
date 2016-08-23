@@ -1,0 +1,21 @@
+extends ../../../layouts/demo
+
+block content
+	.container.container-sm
+		.well
+			h4 Holen Sie ihren Roaming Status.
+			br
+			.row
+				.col-md-3
+					.btn-group.btn-group-justified.mb10
+						a.btn.btn-primary(href="/demo/roaming/auto") Automatisch anmelden
+				.col-md-3
+					.btn-group.btn-group-justified.mb10
+						a.btn.btn-primary(href="/demo/roaming/mobile") Mobile anmelden
+			.row
+				br
+			.row
+				.col-md-3
+					.btn-group.btn-group-justified
+						a.btn.btn-default(href="/demo") Cancel
+

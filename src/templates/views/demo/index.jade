@@ -1,0 +1,37 @@
+extends ../../layouts/demo
+
+block content
+    .container.container-sm
+        .well
+            h4 Wählen Sie ein Demo Szenario.
+            br
+            .row
+                .col-md-3
+                    .btn-group.btn-group-justified.mb10
+                        a.btn.btn-primary(href="/demo/register") Registrierung
+                .col-md-3
+                    .btn-group.btn-group-justified.mb10
+                        a.btn.btn-primary(href="/demo/roaming") Roaming Profil
+                .col-md-3
+                    .btn-group.btn-group-justified.mb10
+                        a.btn.btn-primary(href="/demo/mobile-type") Mobile Status
+                .col-md-3
+                    form#mobileNr(action="/demo/mobile-number",method="POST")
+                        input(type="hidden",name="ipToken",value="test")
+                        .btn-group.btn-group-justified
+                            button.btn.btn-default.btn-primary(disabled="disabled",style="width: 100%;",type="submit") Mobile Nummer
+                
+block js
+    script(type="text/javascript").
+        $.post("#{ipTokenUrl}",null).done(function(data){
+            console.log(data);
+            data = JSON.parse(data);
+            $("#mobileNr > input").val(data.ipToken);
+            $("#mobileNr button.btn-primary").prop("disabled",false);
+        });
+        //- $.get("http://yourmile.azurewebsites.net/api/v1/translations/en",null).done(function(data){
+        //-     console.log(data);
+        //-     $("#mobileNr > input").val(data.ipToken);
+        //-     $("#mobileNr button.btn-primary").prop("disabled",false);
+        //- });
+

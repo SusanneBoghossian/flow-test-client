@@ -1,0 +1,12 @@
+---
+# this manifest deploys app
+applications:
+- name: FlowWebClient
+  memory: 384M
+  instances: 1
+  host: FlowDemo
+  domain: applicationcloud.io
+  path: /
+  command: node keystone.js
+  services:
+  - FlowDemoDb

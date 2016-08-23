@@ -1,0 +1,13 @@
+extends ../../layouts/demo
+
+block content
+	.container
+		.well
+			.row
+				h4 Ihre MSISDN Nummer
+			form.row
+				.form-group
+					label MSISDN
+					input.form-control(name="msisdn", value= msisdn, type="text", readonly)
+				.form-group
+					a.btn.btn-default(href="./") Ok

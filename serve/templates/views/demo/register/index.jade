@@ -1,0 +1,23 @@
+extends ../../../layouts/demo
+
+block content
+	.container.container-sm
+		.well
+			h4 Melden Sie sich jetzt für iApp Premium an, um alle Funktionen dieser App freizuschalten.
+			br
+			.row
+				.col-md-3
+					.btn-group.btn-group-justified.mb10
+						a.btn.btn-primary(href="/demo/register/manual") Manuell anmelden
+				.col-md-3
+					.btn-group.btn-group-justified.mb10
+						a.btn.btn-primary(href="/demo/register/auto") Automatisch anmelden
+				.col-md-3
+					.btn-group.btn-group-justified.mb10
+						a.btn.btn-primary(href="/demo/register/mobile") Mobile anmelden
+			.row
+				br
+			.row
+				.col-md-3
+					.btn-group.btn-group-justified
+						a.btn.btn-default(href="/demo") Cancel

@@ -1,0 +1,15 @@
+extends ../../../layouts/demo
+
+block content
+	.container
+		.well
+			.row
+				h4 Ihr Roaming Profil.
+			form.row
+				.form-group
+					label= status.tel
+				.form-group
+					label Country
+					input.form-control(name="country", value= status.country, type="text", readonly)
+				.form-group
+					a.btn.btn-default(href="./") Cancel

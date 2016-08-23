@@ -1,0 +1,14 @@
+extends ../../layouts/demo
+
+block content
+	.container
+		.well
+			h4 Bitte geben Sie Ihre Mobilfunknummer ein.
+			br
+			form.row(method="POST")
+				.form-group
+					label.sr-only Mobilfunknummer
+					input.form-control(placeholder="z.B. 079 123 45 67", name="msisdn")
+				.btn-group
+					a.btn.btn-default(href="./") Cancel
+					button.btn.btn-primary(type="submit") Weiter

@@ -1,0 +1,12 @@
+extends sms-flow-layout
+
+block sms-flow-content
+	form.form-horizontal(method="post")
+		.form-group
+			label.col-md-2.control-label(for="mobileNumber") Mobile Number
+			.col-md-6
+				input.form-control#mobileNumber(type="tel" placeholder="Mobile Number" name="mobileNumber")
+		.form-group
+			.col-md-offset-2.col-md-10
+				button(type=submit).btn.btn-primary.btn-submit Submit
+			

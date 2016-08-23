@@ -1,0 +1,26 @@
+{
+  "natelPayServer": "https://ott-layer.swisscom.ch/",
+
+
+  "smsflow": {
+    "clientId": "14cbdf0d152b5a0ac9262127c0c230e5",
+    "clientSecret": "185ceb06575a54917ed18aa2659bdf749b8c6add63ec25b29c12d32f7c62a263"
+  },
+
+  "swisscomsmsflow": {
+    "clientId": "3f46234f781c172d3a7a881dfac674c7",
+    "clientSecret": "11844d48372474d37889104ca4ed697c49141b139a959663dd682a0f0fe3ba45"
+  },
+
+  "headerenrichment": {
+    "clientId": "a0ee435db45a9a9f54ba5a41dc2e4b1d",
+    "clientSecret": "f812ed20d304ffc01dc3aa8b69633f8c3e60a037f5ada01f49264e5c0ffab8d1"
+  },
+
+  "mobile": {
+    "clientId": "dc8de78dcde470f051c87740590c0b2a",
+    "clientSecret": "1452741c46f70295b779b21183c2bdca8d2ca122ed6a432a6ff2c38af5e115d6"
+  }
+
+
+}
