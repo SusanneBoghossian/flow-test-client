@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-	ts = require('gulp-typescript'),
+	babel = require('gulp-babel'),
 	server = require('gulp-develop-server');
 
 
@@ -14,8 +14,8 @@ gulp.task('static-files', ['static-files-0'], function() {
 });
 
 gulp.task('scripts', ['static-files'], function() {
-	return gulp.src('src/**/*.ts')//old es6
-		.pipe(ts())
+	return gulp.src('src/**/*.es6')
+		.pipe(babel())
 		.pipe(gulp.dest('serve'));
 });
 
