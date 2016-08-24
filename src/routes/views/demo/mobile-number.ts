@@ -28,7 +28,7 @@ function requestMSISDN(ipToken) {
 		});
 }
 
-export default function (req, res) {
+exports = module.exports = function (req, res) {
 	var view = new keystone.View(req, res);
 	var host = 'http://' + req.headers.host;
 	console.log(host);

@@ -7,7 +7,7 @@ import promises = require('bluebird');
 var constants = require('../../constants.json');
 var errors = require('../../errors.js');
 
-export default function(req, res) {
+exports = module.exports = function(req, res) {
 
 	var host = 'http://' + req.headers.host;
 	console.log(host);

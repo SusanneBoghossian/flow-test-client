@@ -37,7 +37,7 @@ function requestToken(username, password) {
 		});
 }
 
-export default function(req, res) {
+exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 
 	view.on('post', next => {
@@ -58,9 +58,10 @@ export default function(req, res) {
 		requestToken(req.body.hiddenMobileNumber, req.body.pin)
 			.then(result => {
 				req.session.postCode = req.body.postCode;
-				req.session.access_token = result.access_token;
+				req.session.access_token = result.access_token;				
 				var idToken = JSON.parse(new Buffer(result.id_token.split('.')[1], 'base64').toString('ascii'));
 				if (idToken.aud === constants.smsflow.clientId) {
+					console.log("morge  ",result.access_token);
 					res.redirect('/sms-flow/user-info');
 				} else {
 					req.flash('error', 'ID Token audience does not match Client Id');

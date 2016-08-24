@@ -15,7 +15,6 @@ function requestToken(username, password) {
 		password: password,
 		scope: 'openid profile email phone address'
 	});
-
 	var options = {
 		url: url.resolve(constants.natelPayServer, 'oauth/token'),
 		headers: {
@@ -37,7 +36,7 @@ function requestToken(username, password) {
 		});
 }
 
-export default function(req, res) {
+exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 
 	var action = helper.getAction(req);

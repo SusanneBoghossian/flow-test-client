@@ -7,7 +7,7 @@ var constants = require('../../constants.json');
 var errors = require('../../errors.js');
 
 
-export default function(req, res) {
+exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 
 	view.on('get', next => {

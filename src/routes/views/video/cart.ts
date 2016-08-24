@@ -8,7 +8,7 @@ var constants = require('../../constants.json');
 var errors = require('../../errors.js');
 var helper = require('../../helper.js');
 
-export default function (req, res) {
+exports = module.exports = function (req, res) {
     var view = new keystone.View(req, res);
     var action = helper.getAction(req);
     res.locals.section = "Your Cart";

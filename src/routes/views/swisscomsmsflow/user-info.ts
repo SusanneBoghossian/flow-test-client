@@ -55,7 +55,7 @@ function requestUserInfo(access_token, userconsent) {
 		});
 }
 
-export default function(req, res) {
+exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 
 	view.on('get', next => {
