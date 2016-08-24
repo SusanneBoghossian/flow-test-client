@@ -1,4 +1,4 @@
-var keystone = require('keystone');
+import keystone = require('keystone');
 
 export default function(req, res) {
 

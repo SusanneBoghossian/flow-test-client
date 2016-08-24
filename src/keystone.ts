@@ -3,7 +3,7 @@
 require('dotenv').load();
 
 // Require keystone
-var keystone = require('keystone');
+import keystone = require('keystone');
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -48,7 +48,7 @@ keystone.import('models');
 // for each request) should be added to ./routes/middleware.js
 
 keystone.set('locals', {
-	_: require('underscore'),
+	_: require('lodash'),
 	env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable

@@ -1,13 +1,13 @@
-var keystone = require('keystone');
-var request = require('request');
-var url = require('url');
-var promisify = require('es6-promisify');
+import keystone = require('keystone');
+import request = require('request');
+import url = require('url');
+import promises = require('bluebird');
 
 var constants = require('../../constants.json');
-var errors = require('../../errors.js');
-var helper = require('../../helper.js');
+import errors = require('../../errors');
+import helper = require('../../helper');
 
-export default function(req, res) {
+exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var action = helper.getAction(req);
 	res.locals.section = helper.getSection(action);

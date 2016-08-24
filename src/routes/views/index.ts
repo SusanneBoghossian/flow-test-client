@@ -1,4 +1,4 @@
-var keystone = require('keystone');
+import keystone = require('keystone');
 
 exports = module.exports = function(req, res) {
 
@@ -15,3 +15,4 @@ exports = module.exports = function(req, res) {
 	view.render('index');
 
 };
+	

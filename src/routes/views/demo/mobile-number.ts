@@ -1,8 +1,8 @@
-var keystone = require('keystone');
-var request = require('request');
-var querystring = require('querystring');
-var url = require('url');
-var promisify = require('es6-promisify');
+import keystone = require('keystone');
+import request = require('request');
+import querystring = require('querystring');
+import url = require('url');
+import promises = require('bluebird');
 
 var constants = require('../../constants.json');
 var errors = require('../../errors.js');
@@ -17,9 +17,9 @@ function requestMSISDN(ipToken) {
 		}
 	};
 
-	return promisify(request.get)(options)
+	return promises.promisify(request.get)(options)
 		.then(response => {
-			var result = JSON.parse(response.body);
+			var result = JSON.parse(response['body']);
 			if (result.code) {
 				throw new errors.FlowTestClientError(result);
 			} else {

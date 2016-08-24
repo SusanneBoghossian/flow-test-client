@@ -8,8 +8,7 @@
  * modules in your project's /lib directory.
  */
 
-var _ = require('underscore');
-
+import _ = require('lodash');
 
 /**
 	Initialises the standard view locals
@@ -19,7 +18,7 @@ var _ = require('underscore');
 	or replace it with your own templates / logic.
 */
 
-exports.initLocals = function(req, res, next) {
+export  function initLocals (req, res, next) {
 
 	var locals = res.locals;
 
@@ -43,7 +42,7 @@ exports.initLocals = function(req, res, next) {
 	Fetches and clears the flashMessages before a view is rendered
 */
 
-exports.flashMessages = function(req, res, next) {
+export function flashMessages(req, res, next) {
 
 	var flashMessages = {
 		info: req.flash('info'),
@@ -52,7 +51,7 @@ exports.flashMessages = function(req, res, next) {
 		error: req.flash('error')
 	};
 
-	res.locals.messages = _.any(flashMessages, function(msgs) {
+	res.locals.messages = _['any'](flashMessages, function(msgs) { //if Err: _.any   has changed to:  _['any']
 		return msgs.length;
 	}) ? flashMessages : false;
 
@@ -65,7 +64,7 @@ exports.flashMessages = function(req, res, next) {
 	Prevents people from accessing protected pages when they're not signed in
  */
 
-exports.requireAdminUser = function(req, res, next) {
+export function requireAdminUser(req, res, next) {
 
 	if(req.user && req.user.isDemo && req.path.indexOf('demo') < 0)
 		res.redirect("/demo");
@@ -78,7 +77,7 @@ exports.requireAdminUser = function(req, res, next) {
 	}
 };
 
-exports.requireDemoUser = function(req, res, next) {
+export function requireDemoUser(req, res, next) {
 
 	if (!req.user || (!req.user.isDemo && !req.user.isAdmin)) {
 		req.flash('error', 'Please sign in to access this page.');

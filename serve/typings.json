@@ -1,0 +1,8 @@
+{
+  "globalDependencies": {
+    "bluebird": "registry:dt/bluebird#3.0.0+20160811111256",
+    "lodash": "registry:dt/lodash#4.14.0+20160817155621",
+    "node": "registry:dt/node#6.0.0+20160818175514",
+    "request": "registry:dt/request#0.0.0+20160726020908"
+  }
+}

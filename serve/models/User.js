@@ -1,4 +1,6 @@
-var keystone = require('keystone'), Types = keystone.Field.Types;
+"use strict";
+var keystone = require('keystone');
+var Types = keystone.Field.Types;
 /**
  * User Model
  * ==========

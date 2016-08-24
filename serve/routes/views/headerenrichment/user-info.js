@@ -2,7 +2,7 @@
 var keystone = require('keystone');
 var request = require('request');
 var url = require('url');
-var promisify = require('es6-promisify');
+var promises = require('bluebird');
 var constants = require('../../constants.json');
 var errors = require('../../errors.js');
 function requestUserInfo(access_token, userconsent) {
@@ -13,9 +13,9 @@ function requestUserInfo(access_token, userconsent) {
             'Accept': 'application/json'
         }
     };
-    return promisify(request.get)(options)
+    return promises.promisify(request.get)(options)
         .then(function (response) {
-        var result = JSON.parse(response.body);
+        var result = JSON.parse(response['body']);
         if (result.code) {
             console.log(result);
             throw new errors.FlowTestClientError(result);

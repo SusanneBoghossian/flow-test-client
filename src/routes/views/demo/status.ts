@@ -1,8 +1,8 @@
-var keystone = require('keystone');
-var request = require('request');
-var url = require('url');
-var promisify = require('es6-promisify');
-var _ = require('lodash');
+import keystone = require('keystone');
+import request = require('request');
+import url = require('url');
+import promises = require('bluebird');
+import _ = require('lodash');
 
 var constants = require('../../constants.json');
 var errors = require('../../errors.js');
@@ -17,9 +17,9 @@ function requestStatus(access_token,action) {
 		}
 	};
 		
-	return promisify(request.get)(options)
+	return promises.promisify(request.get)(options) //promise.promisify...
 		.then(function (response) {
-			var result = JSON.parse(response.body);
+			var result = JSON.parse(response['body']);
 			
 			if(action === "mobile-type" && result.poolId) {
 				if(result.poolId === "-700")

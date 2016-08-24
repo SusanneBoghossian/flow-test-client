@@ -1,3 +1,4 @@
+"use strict";
 // Simulate config options from your production environment by
 // customising the .env file in your project's root folder.
 require('dotenv').load();
@@ -34,7 +35,7 @@ keystone.import('models');
 // bundled templates and layouts. Any runtime locals (that should be set uniquely
 // for each request) should be added to ./routes/middleware.js
 keystone.set('locals', {
-    _: require('underscore'),
+    _: require('lodash'),
     env: keystone.get('env'),
     utils: keystone.utils,
     editable: keystone.content.editable
