@@ -15,13 +15,13 @@ function requestStatus(access_token,action) {
 		headers: {
 			'Authorization': 'Bearer ' + access_token,
 			'Accept': 'application/json'	
-		}	
+		}
 	};
-		
+
 	return request(options)
-		.then(function (response) {				
-			var result = JSON.parse(response);
-			console.log ("show me result", result);
+		.then(function (res) {				
+			var result = res;
+			console.log ("show me result",res);
 			if(action === "mobile-type" && result.poolId) {
 				if(result.poolId === "-700")
 					result.billingType = "prepaid";
@@ -63,7 +63,6 @@ exports = module.exports = function (req, res) {
 		promise
 			.then(response => {				
 				res.locals.status = response || {};
-				console.log("promise response", response)
 				delete req.session.access_token;
 				next();
 			})
