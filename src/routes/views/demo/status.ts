@@ -1,5 +1,5 @@
 import keystone = require('keystone');
-import request = require('request');
+import request = require('request-promise');
 import url = require('url');
 import promises = require('bluebird');
 import _ = require('lodash');
@@ -10,6 +10,7 @@ var helper = require('../../helper.js');
 
 function requestStatus(access_token,action) {
 	var options = {
+		method: 'GET',
 		url: url.resolve(constants.natelPayServer, 'api/' + action) + '?schema=openid',
 		headers: {
 			'Authorization': 'Bearer ' + access_token,
@@ -17,9 +18,9 @@ function requestStatus(access_token,action) {
 		}
 	};
 		
-	return promises.promisify(request.get)(options) //promise.promisify...
-		.then(function (response) {
-			var result = JSON.parse(response['body']);
+	return request(options)
+		.then(function (result) {			
+			console.log ("show me result", result);
 			
 			if(action === "mobile-type" && result.poolId) {
 				if(result.poolId === "-700")
@@ -60,9 +61,9 @@ exports = module.exports = function (req, res) {
 		}
 
 		promise
-			.then(response => {
-				console.log(response);
+			.then(response => {				
 				res.locals.status = response || {};
+			
 				delete req.session.access_token;
 				next();
 			})

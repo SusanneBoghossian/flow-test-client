@@ -46,7 +46,7 @@ exports = module.exports = function(req, res) {
 
 		res.locals.pin = req.body.hiddenPin;
 		res.locals.mobileNumber = req.body.hiddenMobileNumber;
-
+		
 		if (!req.body.pin) {
 			req.flash('error', 'PIN is required.');
 			return next();

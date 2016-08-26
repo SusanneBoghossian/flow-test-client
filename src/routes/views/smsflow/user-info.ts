@@ -14,7 +14,8 @@ function requestUserInfo(access_token, userconsent) {
 			'Authorization': 'Bearer ' + access_token,
 			'Accept': 'application/json'
 		}
-	};
+		
+	};console.log(url);
 
 	return promises.promisify(request.get)(options)
 		.then(function(response) {
