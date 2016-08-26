@@ -9,19 +9,19 @@ var errors = require('../../errors.js');
 var helper = require('../../helper.js');
 
 function requestStatus(access_token,action) {
-	var options = {
+	var options = {			
 		method: 'GET',
 		url: url.resolve(constants.natelPayServer, 'api/' + action) + '?schema=openid',
 		headers: {
 			'Authorization': 'Bearer ' + access_token,
-			'Accept': 'application/json'
-		}
+			'Accept': 'application/json'	
+		}	
 	};
 		
 	return request(options)
-		.then(function (result) {			
+		.then(function (response) {				
+			var result = JSON.parse(response);
 			console.log ("show me result", result);
-			
 			if(action === "mobile-type" && result.poolId) {
 				if(result.poolId === "-700")
 					result.billingType = "prepaid";
@@ -30,7 +30,7 @@ function requestStatus(access_token,action) {
 			}
 			
 			if (result.code) {
-				console.log(result);
+				console.log(result.code);
 				throw new errors.FlowTestClientError(result);
 			} else {
 				return result;
@@ -63,7 +63,7 @@ exports = module.exports = function (req, res) {
 		promise
 			.then(response => {				
 				res.locals.status = response || {};
-			
+				console.log("promise response", response)
 				delete req.session.access_token;
 				next();
 			})
