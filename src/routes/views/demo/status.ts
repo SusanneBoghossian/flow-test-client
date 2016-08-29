@@ -11,17 +11,18 @@ var helper = require('../../helper.js');
 function requestStatus(access_token,action) {
 	var options = {			
 		method: 'GET',
-		url: url.resolve(constants.natelPayServer, 'api/' + action) + '?schema=openid',
-		headers: {
+		json: true,
+		uri: url.resolve(constants.natelPayServer, 'api/' + action) + '?schema=openid',
+		headers: {			
 			'Authorization': 'Bearer ' + access_token,
 			'Accept': 'application/json'	
 		}
 	};
-
+	
 	return request(options)
 		.then(function (res) {				
 			var result = res;
-			console.log ("show me result",res);
+			console.log ("show me result",JSON.stringify(res));
 			if(action === "mobile-type" && result.poolId) {
 				if(result.poolId === "-700")
 					result.billingType = "prepaid";
@@ -63,6 +64,7 @@ exports = module.exports = function (req, res) {
 		promise
 			.then(response => {				
 				res.locals.status = response || {};
+
 				delete req.session.access_token;
 				next();
 			})
