@@ -6,16 +6,22 @@ block content
             h4 Wählen Sie ein Demo Szenario.
             br
             .row
-                .col-md-3
+                .col-md-2
                     .btn-group.btn-group-justified.mb10
                         a.btn.btn-primary(href="/demo/register") Registrierung
-                .col-md-3
+                .col-md-2
                     .btn-group.btn-group-justified.mb10
                         a.btn.btn-primary(href="/demo/roaming") Roaming Profil
-                .col-md-3
+                 .col-md-2
+                    .btn-group.btn-group-justified.mb10
+                        a.btn.btn-primary(href="/demo/imsi") IMSI
+                 .col-md-2
+                    .btn-group.btn-group-justified.mb10
+                        a.btn.btn-primary(href="/demo/payment-type") Payment Type                        
+                .col-md-2
                     .btn-group.btn-group-justified.mb10
                         a.btn.btn-primary(href="/demo/mobile-type") Mobile Status
-                .col-md-3
+                .col-md-2
                     form#mobileNr(action="/demo/mobile-number",method="POST")
                         input(type="hidden",name="ipToken",value="test")
                         .btn-group.btn-group-justified

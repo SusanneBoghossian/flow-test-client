@@ -1,0 +1,17 @@
+//PAYMENT
+extends ../../../layouts/demo
+
+block content
+	.container
+		.well
+			.row
+				h4 Ihre Zahlungsart.
+			form.row
+				.form-group
+					label Ihre Telefonnummer
+					input.form-control(name="msisdn", value= status.msisdn, type="text", readonly)
+				.form-group
+					label Zahlungsart
+					input.form-control(name="imsi", value= status.paymenttype, type="text", readonly)
+				.form-group
+					a.btn.btn-default(href="./") Cancel

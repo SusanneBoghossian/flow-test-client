@@ -18,6 +18,8 @@ exports.getSection = function(action) {
 			return "Roaming Status anzeigen";
 		case "mobile-type":
 			return "Mobile Status anzeigen";
+		case "payment-type":
+			return "Zahlungsart anzeigen"
 		default:
 			return "Funktionen freischalten";
 	}

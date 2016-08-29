@@ -31,6 +31,7 @@ function requestStatus(access_token,action) {
 			}
 			
 			if (result.code) {
+				console.log("i am in ERRORS");
 				console.log(result.code);
 				throw new errors.FlowTestClientError(result);
 			} else {
@@ -55,10 +56,12 @@ exports = module.exports = function (req, res) {
 		var promise;
 		
 		if(action === "mobile-type") {
-			promise = Promise.all([requestStatus(req.session.access_token, "imsi"), requestStatus(req.session.access_token, "roaming"), requestStatus(req.session.access_token, "mobile-type")])
+			promise = Promise.all([requestStatus(req.session.access_token, "imsi"), requestStatus(req.session.access_token, "payment-type"), requestStatus(req.session.access_token, "roaming"), requestStatus(req.session.access_token, "mobile-type")])
 			.then((values)=> _.merge(values[0],values[1],values[2]));
 		} else {
+			console.log("i am in promise");
 			promise = requestStatus(req.session.access_token, action);
+			console.log("action   ", action);
 		}
 
 		promise
@@ -69,7 +72,7 @@ exports = module.exports = function (req, res) {
 				next();
 			})
 			.catch(error => {
-				console.log(error);
+				console.log("promise error logging:::",error);
 				req.flash('error', error.message);
 				next();
 			});

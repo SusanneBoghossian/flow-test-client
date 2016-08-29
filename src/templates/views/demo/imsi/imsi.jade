@@ -1,0 +1,16 @@
+extends ../../../layouts/demo
+
+block content
+	.container
+		.well
+			.row
+				h4 Ihre IMSI Nummer.
+			form.row
+				.form-group
+					label Telefonnummer
+					input.form-control(name="msisdn", value= status.msisdn, type="text", readonly)
+				.form-group
+					label IMSI Nummer
+					input.form-control(name="imsi", value= status.imsi, type="text", readonly)
+				.form-group
+					a.btn.btn-default(href="./") Cancel

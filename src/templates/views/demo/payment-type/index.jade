@@ -1,0 +1,22 @@
+//PAYMENT INDEX FILE
+extends ../../../layouts/demo
+
+block content
+	.container.container-sm
+		.well
+			h4 Fragen Sie ihre Zahlungsart ab.
+			br
+			.row
+				.col-md-3
+					.btn-group.btn-group-justified.mb10
+						a.btn.btn-primary(href="/demo/payment-type/auto") Automatisch anmelden
+				.col-md-3
+					.btn-group.btn-group-justified.mb10
+						a.btn.btn-primary(href="/demo/payment-type/mobile") Mobile anmelden
+			.row
+				br
+			.row
+				.col-md-3
+					.btn-group.btn-group-justified
+						a.btn.btn-default(href="/demo") Cancel
+
