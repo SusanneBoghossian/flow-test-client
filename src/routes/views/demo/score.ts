@@ -2,30 +2,39 @@ import keystone = require('keystone');
 import request = require('request');
 import url = require('url');
 import promises = require('bluebird');
+import querystring = require('querystring');
 
+var helper = require('../../helper.js');
 var constants = require('../../constants.json');
 var errors = require('../../errors.js');
 
-// function requestUserInfo(access_token, userconsent) {
-// 	var options = {
-// 		url: url.resolve(constants.natelPayServer, 'api/user') + '?userconsent=' + userconsent + '&schema=openid',
-// 		headers: {
-// 			'Authorization': 'Bearer ' + access_token,
-// 			'Accept': 'application/json'
-// 		}
-// 	};
+function requestToken(username, password) {
+	var postData = querystring.stringify({
+		grant_type: 'password',
+		username: username,
+		password: password,
+		scope: 'openid profile email phone address'
+	});
+	var options = {
+		url: url.resolve(constants.natelPayServer, 'oauth/token'),
+		headers: {
+			'Authorization': 'Basic ' + helper.getAuthToken(constants.smsflow.clientId,constants.smsflow.clientSecret),
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Length': postData.length
+		},
+		body: postData
+	};
 
-// 	return promises.promisify(request.get)(options)
-// 		.then(function(response) {
-// 			var result = JSON.parse(response['body']);
-// 			if (result.code) {
-// 				console.log(result);
-// 				throw new errors.FlowTestClientError(result);
-// 			} else {
-// 				return result;
-// 			}
-// 		});
-// }
+	return promises.promisify(request.post)(options)
+		.then(response => {
+			var result = JSON.parse(response['body']);
+			if (result.code) {
+				throw new errors.FlowTestClientError(result);
+			} else {
+				return result;
+			}
+		});
+}
 
 exports = module.exports = function (req, res) {
     var view = new keystone.View(req, res);
@@ -40,10 +49,8 @@ exports = module.exports = function (req, res) {
         res.locals.userInfo = {};       
         next ();
     });
-    view.on('post', next => {
-        console.log("i am in view.on post");
-      
-        console.log("the sent body is: ", req.body["address.locality"]);
+    view.on('post', next => {//res.locals gets undefined    
+        req.session.myscore = req.body.firstname;
         //res.locals.userInfo.given_name = req.body.userInfo.given_name;
         res.redirect('/demo/score/result');
     });

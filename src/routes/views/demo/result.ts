@@ -10,7 +10,9 @@ exports = module.exports = function (req, res) {
     var view = new keystone.View(req, res);
    
 
-    view.on('get', next => {        
+    view.on('get', next => {    
+        res.locals.firstname = req.session.myscore;
+        console.log("my value in result from score:", res.locals.testvalue); 
         next ();
     });
     view.on('post', next => {       

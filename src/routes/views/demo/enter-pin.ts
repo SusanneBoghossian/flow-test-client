@@ -56,7 +56,7 @@ exports = module.exports = function(req, res) {
 		//res.locals.enteredPostCode = req.body.postCode || '';
 
 		res.locals.msisdn = req.body.msisdn;
-		console.log("entered pin is:::",req.body.pin);
+		console.log("entered NUMBER is:::",req.body.msisdn);
 		if (!req.body.pin) {
 			req.flash('error', 'PIN is required.');
 			return next();
