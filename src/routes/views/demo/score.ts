@@ -1,5 +1,5 @@
 import keystone = require('keystone');
-import request = require('request');
+import request = require('request-promise');
 import url = require('url');
 import promises = require('bluebird');
 import querystring = require('querystring');
@@ -8,32 +8,47 @@ var helper = require('../../helper.js');
 var constants = require('../../constants.json');
 var errors = require('../../errors.js');
 
-function requestToken(username, password) {
-	var postData = querystring.stringify({
-		grant_type: 'password',
-		username: username,
-		password: password,
-		scope: 'openid profile email phone address'
-	});
-	var options = {
-		url: url.resolve(constants.natelPayServer, 'oauth/token'),
-		headers: {
-			'Authorization': 'Basic ' + helper.getAuthToken(constants.smsflow.clientId,constants.smsflow.clientSecret),
-			'Content-Type': 'application/x-www-form-urlencoded',
-			'Content-Length': postData.length
-		},
-		body: postData
-	};
+interface scoreValues {
+    msisdn: number;
+    firstname: string;
+    lastname: string;
+    address: string;
+    city: string;
+}
 
-	return promises.promisify(request.post)(options)
-		.then(response => {
-			var result = JSON.parse(response['body']);
-			if (result.code) {
-				throw new errors.FlowTestClientError(result);
-			} else {
-				return result;
-			}
-		});
+function requestScore(scoreObj: scoreValues) {
+    var postData = querystring.stringify({
+        msisdn: scoreObj.msisdn,
+        firstname: scoreObj.firstname,
+        lastname: scoreObj.lastname,
+        address: scoreObj.address,
+        city: scoreObj.city,
+        // grant_type: "client_credentials"
+    });
+    var options = {
+        method: "POST",
+        url: url.resolve(constants.natelPayServer, 'api/score'),
+        headers: {
+            'Authorization': 'Basic ' + helper.getAuthToken(constants.smsflow.clientId, constants.smsflow.clientSecret),
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': postData.length
+        },
+        body: postData
+    };
+  
+    return request(options)
+        .then(function (res) {
+            var result = JSON.parse(res);
+            console.log ("show me result",result);
+            if (result.code) {//an error occured
+                console.log("score.ts function request has ERRORS");
+                console.log(result.code);
+                throw new errors.FlowTestClientError(result);
+            } else {
+                return result;
+            }
+        });
+
 }
 
 exports = module.exports = function (req, res) {
@@ -46,13 +61,35 @@ exports = module.exports = function (req, res) {
         res.locals.requiredText = "Feld muss ausgefüllt sein";
         res.locals.hint = "Bitte füllen Sie das Formular aus."
         res.locals.address = {};
-        res.locals.userInfo = {};       
-        next ();
+        res.locals.userInfo = {};
+        next();
     });
     view.on('post', next => {//res.locals gets undefined    
-        req.session.myscore = req.body.firstname;
-        //res.locals.userInfo.given_name = req.body.userInfo.given_name;
-        res.redirect('/demo/score/result');
+        
+        var scoreObj = {
+            msisdn: req.body.msisdn,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            address: req.body.address,
+            city: req.body.city,    
+        }
+        var promise;
+        promise = requestScore(scoreObj);
+        promise.then(response => {
+            console.log("promise is ok");
+            res.locals.score = response || {};                      
+            req.session.score = res.locals.score;          
+            console.log("SCORE", req.session.score);
+            res.redirect('/demo/score/result');
+            //next ();            
+        }).catch(error => {
+            console.log("promise error logging:::",error);
+            req.flash('error', error.message);
+            //next();
+            res.redirect('/demo/score/score');
+        });
+
+        
     });
     view.render('demo/score/score');
 };

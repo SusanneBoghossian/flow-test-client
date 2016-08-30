@@ -9,10 +9,10 @@ var errors = require('../../errors.js');
 exports = module.exports = function (req, res) {
     var view = new keystone.View(req, res);
    
-
+    console.log("hello from RESULT");
     view.on('get', next => {    
-        res.locals.firstname = req.session.myscore;
-        console.log("my value in result from score:", res.locals.testvalue); 
+        res.locals.score = req.session.score;
+        
         next ();
     });
     view.on('post', next => {       
