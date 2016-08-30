@@ -1,0 +1,27 @@
+//this is the result of the scores
+extends ../../../layouts/demo
+
+block content
+	.container
+	//----------------test data--------------
+		//- .well
+		//- 	h4 asdf
+		//- 	form.row(method="POST",novalidate="novalidate")
+		//- 		.form-group.col-xs-12.col-md-12						
+		//- 			input.form-control(name="testvalue", value= testvalue, type="text")
+		//- 		button.btn.btn-success(type="submit")= nextButton
+	//--------------end test data---------------
+
+	+score-form(userInfo,address)
+block js
+	script(type="text/javascript").
+		$(document).ready(function () {
+			$('form').parsley({
+			classHandler: function ( parsleyField) {
+				// specify where parsley error-success classes will be set
+				return parsleyField.$element.parent();
+				// Change this to change the element to apply too
+				},
+			});
+		});
+

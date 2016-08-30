@@ -55,7 +55,7 @@ exports = module.exports = app => {
 	app.get('/signout', routes.views.session.signout);
 
 	app.get("/demo", middleware.requireDemoUser, routes.views.demo.actions);
-    app.post("/demo/mobile-number", middleware.requireDemoUser, routes.views.demo['mobile-number']);
+	app.post("/demo/mobile-number", middleware.requireDemoUser, routes.views.demo['mobile-number']);
     app.get("/demo/mobile-number-callback", middleware.requireDemoUser, routes.views.demo['mobile-number-callback']);
 	app.get("/demo/:action", middleware.requireDemoUser, routes.views.demo.index);
 	app.all("/demo/:action/manual", middleware.requireDemoUser, routes.views.demo.manual);
@@ -67,8 +67,10 @@ exports = module.exports = app => {
 	app.all("/demo/:action/enter-pin", middleware.requireDemoUser, routes.views.demo['enter-pin']);
 	app.get("/demo/:action/premium", middleware.requireDemoUser, routes.views.demo.premium);
 	app.get("/demo/:action/status", middleware.requireDemoUser, routes.views.demo.status);
+    app.all("/demo/:action/score", middleware.requireDemoUser, routes.views.demo.score);
+ 	app.get("/demo/:action/result", middleware.requireDemoUser, routes.views.demo.result);
     
-    app.get("/video/:action", middleware.requireDemoUser, routes.views.video.index);
+	app.get("/video/:action", middleware.requireDemoUser, routes.views.video.index);
     app.all("/video/:action/cart", middleware.requireDemoUser, routes.views.video.cart);
     app.all("/video/:action/manual", middleware.requireDemoUser, routes.views.video.manual);
     app.get("/video/:action/mobile-callback", middleware.requireDemoUser, routes.views.video['mobile-callback']);

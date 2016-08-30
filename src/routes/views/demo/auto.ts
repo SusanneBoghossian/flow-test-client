@@ -57,6 +57,7 @@ exports = module.exports = function(req, res) {
 				res.redirect(`/demo/${action}/enter-pin`);
 			})
 			.catch(error => {
+				console.log("ERROR COMING FROM POST", req.body.msisdn);
 				req.flash('error', error.message);
 				next();
 			});

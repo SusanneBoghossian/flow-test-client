@@ -23,6 +23,7 @@ exports = module.exports = function(req, res) {
 		
 		next();
 	});
-
-	view.render(`demo/${action}/index`);
+	console.log("the action detected is:",action);
+	view.render(`demo/${action}/index`);	
+	
 }

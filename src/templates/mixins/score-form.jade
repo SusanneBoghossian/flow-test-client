@@ -1,0 +1,28 @@
+mixin score-form(userInfo,address)
+	.well
+		h4= hint
+		br
+		h3 hallo score form
+		form.row(method="POST",novalidate="novalidate",data-parsley-error-class="has-error", data-parsley-success-class="has-success")
+			if userInfo		
+				.form-group.col-xs-12.col-md-12
+						input.form-control(type="text" name= "userInfo.phone_number" value= userInfo.phone_number placeholder="Phone Number", required)
+						span.help-block= requiredText
+				.form-group.col-xs-12.col-md-12
+					input.form-control(type="text" name= "userInfo.given_name" value= userInfo.given_name placeholder="First Name")
+					
+				.form-group.col-xs-12.col-md-12
+					input.form-control(type="text" name= "userInfo.family_name" value= userInfo.family_name placeholder="Family Name")
+				
+				if address  
+					.form-group.col-xs-12.col-md-12
+						input.form-control(type="text" name= "address.street_address" value= address.street_address placeholder="Address")
+								
+					.form-group.col-xs-6.col-md-12
+						input.form-control(type="text" name= "address.locality" value= address.locality placeholder= "City")
+						
+				
+			.form-group.col-xs-12.col-md-12
+			.btn-group.pull-right
+				a.btn.btn-default(href="./") Cancel
+				button.btn.btn-success(type="submit")= nextButton
