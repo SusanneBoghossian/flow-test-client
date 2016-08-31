@@ -5,20 +5,20 @@ mixin score-form(userInfo,address)
 		form.row(method="POST",novalidate="novalidate",data-parsley-error-class="has-error", data-parsley-success-class="has-success")
 			if userInfo		
 				.form-group.col-xs-12.col-md-12
-						input.form-control(type="text" name= "msisdn" placeholder="Phone Number", required)
+						input.form-control(type="text" name= "msisdn" value= msisdn placeholder="Phone Number", required)
 						span.help-block= requiredText
 				.form-group.col-xs-12.col-md-6
-					input.form-control(type="text" name= "firstname" placeholder="First Name")
+					input.form-control(type="text" name= "firstname" value= firstname placeholder="First Name")
 					
 				.form-group.col-xs-12.col-md-6
-					input.form-control(type="text" name= "lastname" placeholder="Family Name")
+					input.form-control(type="text" name= "lastname" value= lastname placeholder="Family Name")
 				
 				if address  
 					.form-group.col-xs-12.col-md-6
-						input.form-control(type="text" name= "street" placeholder="Address")
+						input.form-control(type="text" name= "street" value= street placeholder="Address")
 								
 					.form-group.col-xs-6.col-md-6
-						input.form-control(type="text" name= "city" placeholder= "City")
+						input.form-control(type="text" name= "city" value= city placeholder= "City")
 						
 				
 			.form-group.col-xs-12.col-md-12

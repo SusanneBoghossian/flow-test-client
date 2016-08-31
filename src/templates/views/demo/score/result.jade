@@ -2,8 +2,38 @@
 extends ../../../layouts/demo
 
 block content
-    .container.container-sm
-            .well
-            h4 Score Resultat
-            label nummer:
-            input.form-control(name="name", value=score.msisdn.score, type="text", readonly)
+    .container
+            h3 Übereinstimmungen für Nummer: #{score.msisdn.value}
+            br
+            .row
+                .col-md-4
+                    strong Vorname
+                .col-md-4
+                    p #{score.firstname.value}
+                .col-md-4
+                    .progress
+                        .progress-bar-success(role="progressbar" style="width:#{score.firstname.score}%") #{score.firstname.score}%
+            .row
+                .col-md-4
+                    strong Nachname
+                .col-md-4
+                    p #{score.lastname.value}
+                .col-md-4
+                    .progress
+                        .progress-bar-success(role="progressbar" style="width:#{score.lastname.score}%") #{score.lastname.score}%
+            .row
+                .col-md-4
+                    strong Strasse
+                .col-md-4
+                    p #{score.street.value}
+                .col-md-4
+                    .progress
+                        .progress-bar-success(role="progressbar" style="width:#{score.street.score}%") #{score.street.score}%        
+            .row
+                .col-md-4
+                    strong Stadt
+                .col-md-4
+                    p #{score.city.value}
+                .col-md-4
+                    .progress
+                        .progress-bar-success(role="progressbar" style="width:#{score.city.score}%") #{score.city.score}%

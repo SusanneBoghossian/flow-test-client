@@ -56,18 +56,14 @@ exports = module.exports = function (req, res) {
 		var promise;
 		
 		if(action === "mobile-type") {
-			promise = Promise.all([requestStatus(req.session.access_token, "imsi"), requestStatus(req.session.access_token, "payment-type"), requestStatus(req.session.access_token, "roaming"), requestStatus(req.session.access_token, "mobile-type")])
+			promise = Promise.all([requestStatus(req.session.access_token, "imsi"), requestStatus(req.session.access_token, "roaming"), requestStatus(req.session.access_token, "mobile-type")])
 			.then((values)=> _.merge(values[0],values[1],values[2]));
-		} else {
-			console.log("i am in promise");
+		} else {			
 			promise = requestStatus(req.session.access_token, action);
-			console.log("action   ", action);
 		}
-
 		promise
 			.then(response => {				
 				res.locals.status = response || {};
-
 				delete req.session.access_token;
 				next();
 			})

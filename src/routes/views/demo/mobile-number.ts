@@ -32,7 +32,7 @@ exports = module.exports = function (req, res) {
 	var view = new keystone.View(req, res);
 	var host = 'http://' + req.headers.host;
 	console.log(host);
-
+	console.log("iptoken", req.body.ipToken);
 	requestMSISDN(req.body.ipToken).then(result => {
 		res.redirect("/demo/mobile-number-callback?msisdn=" + result.msisdn);
 	}).catch(e => {

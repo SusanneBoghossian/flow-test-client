@@ -12,7 +12,7 @@ interface scoreValues {
     msisdn: number;
     firstname: string;
     lastname: string;
-    address: string;
+    street: string;
     city: string;
 }
 
@@ -21,7 +21,7 @@ function requestScore(scoreObj: scoreValues) {
         msisdn: scoreObj.msisdn,
         firstname: scoreObj.firstname,
         lastname: scoreObj.lastname,
-        address: scoreObj.address,
+        street: scoreObj.street,
         city: scoreObj.city,
         // grant_type: "client_credentials"
     });
@@ -70,7 +70,7 @@ exports = module.exports = function (req, res) {
             msisdn: req.body.msisdn,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
-            address: req.body.address,
+            street: req.body.street,
             city: req.body.city,    
         }
         var promise;
@@ -79,11 +79,11 @@ exports = module.exports = function (req, res) {
             console.log("promise is ok");
             res.locals.score = response || {};                      
             req.session.score = res.locals.score;          
-            console.log("SCORE", req.session.score);
+            //console.log("SCORE", req.session.score.street);
             res.redirect('/demo/score/result');
             //next ();            
         }).catch(error => {
-            console.log("promise error logging:::",error);
+            console.log("promise error logging:::",error.message);
             req.flash('error', error.message);
             //next();
             res.redirect('/demo/score/score');

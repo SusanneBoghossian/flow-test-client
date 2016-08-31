@@ -11,8 +11,20 @@ exports = module.exports = function (req, res) {
    
     console.log("hello from RESULT");
     view.on('get', next => {    
-        res.locals.score = req.session.score;
-        
+        res.locals.title = "iApp";
+        res.locals.section = "Score anzeigen";
+        res.locals.score = req.session.score;        
+        var localScoreObj = res.locals.score;
+        for (var val in localScoreObj)//gives me firstname, msisdn, etc.
+        {            
+            var valueToRound = localScoreObj[val].score;
+            localScoreObj[val].score = Math.round(valueToRound * 100);
+            console.log("myval", localScoreObj[val].score);
+            
+        }
+        console.log("localscore", localScoreObj)//look up if the score has changed to new
+        //overgive modified score values 
+        res.locals.score = localScoreObj;
         next ();
     });
     view.on('post', next => {       

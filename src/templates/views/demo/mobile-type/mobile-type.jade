@@ -10,10 +10,10 @@ block content
 					label= status.tel
 				.form-group
 					label Active IMSI
-					input.form-control(name="activeIMSI", value= status.activeIMSI, type="text", readonly)
+					input.form-control(name="activeIMSI", value= status.imsi, type="text", readonly)
 				.form-group
 					label Call Forwarding
-					input.form-control(name="callForwarding", value= status.callForwarding, type="text", readonly)
+					input.form-control(name="callForwarding", value= status.roaming, type="text", readonly)
 				.form-group
 					label Billing Type
 					input.form-control(name="billingType", value= status.billingType, type="text", readonly)
